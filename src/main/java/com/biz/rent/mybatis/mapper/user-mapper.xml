@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biz.rent.mybatis.dao.UserDao">
+	<select id="selectAll" resultType="UserDTO">
+		select * from tbl_users order by u_code
+	</select>
+	<select id="findById" resultType="UserDTO">
+		select * from tbl_users where u_code = #{u_code} order by u_code
+	</select>
+	<select id="findByName" resultType="UserDTO">
+		select * from tbl_users where u_name like '%' || #{u_name} || '%' order by u_code
+	</select>
+	<select id="findByTel" resultType="UserDTO">
+		select * from tbl_users where u_tel like '%' || #{u_tel} || '%' order by u_code
+	</select>
+	<select id="findByNameAndTel" resultType="UserDTO">
+		select * from tbl_users where u_name = #{u_name} and u_tel = #{u_tel} order by u_code
+	</select>
+	
+	<insert id="insert">
+		insert into tbl_users(U_CODE, U_NAME, U_TEL, U_ADDR)
+		values('S' || LPAD(seq_users.nextval, 5, 0), #{u_name}, #{u_tel}, #{u_addr})
+	</insert>
+	
+	<update id="update">
+		update tbl_users set
+			U_NAME = #{u_name},
+			U_TEL = #{u_tel},
+			U_ADDR = #{u_addr}
+		where U_CODE = #{u_code}
+	</update>
+	
+</mapper>

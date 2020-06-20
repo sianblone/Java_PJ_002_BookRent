@@ -4,7 +4,6 @@ RemoteSystemsTempFiles/
 
 # mySecurity File
 
-mybatis-config.*
 NaverConfig.*
 DataGoConfig.*
 naver.email.secret.properties
